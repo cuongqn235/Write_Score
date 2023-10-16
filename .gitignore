@@ -42,3 +42,5 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+lib/gen/assets.gen.dart
+lib/inject_dependency/inject_dependency.config.dart

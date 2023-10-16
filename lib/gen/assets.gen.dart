@@ -34,15 +34,12 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
-
   /// File path: assets/images/logo_app.png
   AssetGenImage get logoApp =>
       const AssetGenImage('assets/images/logo_app.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logo, logoApp];
+  List<AssetGenImage> get values => [logoApp];
 }
 
 class $AssetsDatabaseMigrationGen {

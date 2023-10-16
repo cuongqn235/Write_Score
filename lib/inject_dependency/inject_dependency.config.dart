@@ -48,32 +48,32 @@ Future<_i1.GetIt> init(
     preResolve: true,
   );
   gh.factory<_i4.Dio>(
-    () => networkModule.dioDefault,
-    instanceName: 'defaultDio',
-  );
-  gh.factory<_i4.Dio>(
-    () => networkModule.dioNotification,
-    instanceName: 'dioNotification',
-  );
-  gh.factory<_i4.Dio>(
-    () => networkModule.dioGoogleMap,
-    instanceName: 'googleMapDio',
-  );
-  gh.factory<_i4.Dio>(
     () => networkModule.dioSetting,
     instanceName: 'settingDio',
-  );
-  gh.factory<_i4.Dio>(
-    () => networkModule.dioAuth,
-    instanceName: 'authDio',
   );
   gh.factory<_i4.Dio>(
     () => networkModule.dioDownloadImage,
     instanceName: 'downloadImageDio',
   );
   gh.factory<_i4.Dio>(
+    () => networkModule.dioGoogleMap,
+    instanceName: 'googleMapDio',
+  );
+  gh.factory<_i4.Dio>(
+    () => networkModule.dioNotification,
+    instanceName: 'dioNotification',
+  );
+  gh.factory<_i4.Dio>(
+    () => networkModule.dioDefault,
+    instanceName: 'defaultDio',
+  );
+  gh.factory<_i4.Dio>(
     () => networkModule.dioToken,
     instanceName: 'tokenDio',
+  );
+  gh.factory<_i4.Dio>(
+    () => networkModule.dioAuth,
+    instanceName: 'authDio',
   );
   gh.singleton<_i5.GameDao>(_i5.GameDao(sqlite: gh<_i3.Database>()));
   gh.lazySingleton<_i6.IApiService>(
