@@ -38,8 +38,12 @@ class $AssetsImagesGen {
   AssetGenImage get logoApp =>
       const AssetGenImage('assets/images/logo_app.png');
 
+  /// File path: assets/images/logo_app_dark.png
+  AssetGenImage get logoAppDark =>
+      const AssetGenImage('assets/images/logo_app_dark.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [logoApp];
+  List<AssetGenImage> get values => [logoApp, logoAppDark];
 }
 
 class $AssetsDatabaseMigrationGen {
