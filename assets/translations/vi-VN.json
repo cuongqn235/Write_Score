@@ -1,0 +1,19 @@
+﻿{
+    "title_home": "Lịch sử ghi điểm",
+    "title_score": "Ghi điểm",
+    "input_score": "Nhập điểm",
+    "total_score": "Tổng điểm",
+    "game_index_round": "Trận {index} ({round} ván)",
+    "player": "Người chơi {name}",
+    "players": "Danh sách người chơi",
+    "done": "Xong",
+    "add": "Thêm",
+    "add_player": "Thêm người chơi",
+    "not_empty": "Không được để trống",
+    "game": {
+        "title": "Trận {index}",
+        "subtitleDelete": "Bạn muốn xoá trận này?"
+    },
+    "delete": "Xoá",
+    "cancel": "Huỷ"
+}

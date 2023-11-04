@@ -1,6 +1,5 @@
 import 'package:write_score/design/spaces.dart';
 import 'package:write_score/feature/app/application/app/app_bloc.dart';
-import 'package:write_score/gen/assets.gen.dart';
 import 'package:write_score/helper/extension/context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

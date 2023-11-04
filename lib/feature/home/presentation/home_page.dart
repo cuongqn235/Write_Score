@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:write_score/core/application/repository/game/models/app_game.dart';
 import 'package:write_score/design/foundation/colors.dart';
 import 'package:write_score/design/spaces.dart';
@@ -35,7 +36,7 @@ class _HomePageState extends State<HomePage> {
       extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: AppBar(
-        title: const Text('Lịch sử ghi điểm'),
+        title: const Text('title_home').tr(),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -52,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         },
         heroTag: 'app_fab',
         icon: const Icon(Icons.add),
-        label: const Text('Ghi điểm'),
+        label: const Text('title_score').tr(),
       ),
       body: SafeArea(
         child: BlocSelector<HomeBloc, HomeState, List<AppGame>>(
@@ -80,6 +81,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
+                    onLongPress: () {
+                      _deleteGame(context, game: game, index: index);
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(
@@ -95,11 +99,14 @@ class _HomePageState extends State<HomePage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'Game ${game.id} (${game.rounds.length} ván)',
+                            'game_index_round',
                             style: context.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
-                          ),
+                          ).tr(namedArgs: {
+                            'index': game.id.toString(),
+                            'round': game.rounds.length.toString(),
+                          }),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 8.h),
                             child: const Divider(),
@@ -112,14 +119,14 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     const Text(
-                                      'Người chơi',
+                                      'player',
                                       textAlign: TextAlign.center,
-                                    ),
+                                    ).tr(namedArgs: {'name': ''}),
                                     spaceH12,
                                     const Text(
-                                      'Tổng điểm',
+                                      'total_score',
                                       textAlign: TextAlign.center,
-                                    ),
+                                    ).tr(),
                                   ],
                                 ),
                                 spaceW4,
@@ -179,5 +186,56 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> _deleteGame(
+    BuildContext context, {
+    required AppGame game,
+    required int index,
+  }) async {
+    final res = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            'game.title',
+            style: context.textTheme.titleMedium,
+          ).tr(
+            namedArgs: {
+              'index': game.id.toString(),
+            },
+          ),
+          content: Text(
+            'game.subtitleDelete',
+            style: context.textTheme.bodyMedium,
+          ).tr(),
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.justBack();
+              },
+              child: Text(
+                'cancel',
+                style: context.textTheme.bodyMedium,
+              ).tr(),
+            ),
+            TextButton(
+              onPressed: () {
+                context.back(result: true);
+              },
+              child: Text(
+                'delete',
+                style: context.textTheme.bodyMedium?.copyWith(
+                  color: context.colorScheme.error,
+                ),
+              ).tr(),
+            ),
+          ],
+        );
+      },
+    );
+    if (context.mounted && res != null && res) {
+      context.read<HomeBloc>().add(HomeEvent.onDeleteGame(gameId: game.id));
+    }
   }
 }

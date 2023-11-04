@@ -82,4 +82,9 @@ class GameRepository implements IGameRepository {
       scores: scores,
     );
   }
+
+  @override
+  Future<void> deleteGame({required int gameId}) {
+    return gameDao.deleteById(gameId);
+  }
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:write_score/design/component/button/solid_button.dart';
 import 'package:write_score/design/component/button/text_button.dart';
 import 'package:write_score/design/component/text/required_label.dart';
@@ -39,7 +40,7 @@ class _UsersInfoState extends State<UsersInfo> {
       create: (context) => cubit,
       child: AlertDialog(
         elevation: 0,
-        title: const Text('Người chơi'),
+        title: const Text('players').tr(),
         content: Form(
           key: _formKey,
           child: SizedBox(
@@ -74,7 +75,7 @@ class _UsersInfoState extends State<UsersInfo> {
                             );
                           }
                           return AppTextButton.small(
-                            'Thêm người',
+                            'add_player',
                             onPressed: () => cubit.onAddUser(),
                           );
                         },
@@ -90,7 +91,7 @@ class _UsersInfoState extends State<UsersInfo> {
                   },
                   builder: (context, users) {
                     return AppSolidButton.medium(
-                      'Xong',
+                      'done',
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           context.back(result: users);

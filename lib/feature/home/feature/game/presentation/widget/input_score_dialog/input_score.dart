@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:write_score/design/component/button/solid_button.dart';
 import 'package:write_score/design/component/text/required_label.dart';
 import 'package:write_score/design/spaces.dart';
@@ -47,7 +48,7 @@ class _InputScoreState extends State<InputScore> {
       create: (context) => cubit,
       child: AlertDialog(
         elevation: 0,
-        title: const Text('Nhập điểm'),
+        title: const Text('input_score').tr(),
         content: Form(
           key: _formKey,
           child: SizedBox(
@@ -89,7 +90,7 @@ class _InputScoreState extends State<InputScore> {
                   },
                   builder: (context, scores) {
                     return AppSolidButton.medium(
-                      'Xong',
+                      'done',
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           context.back(result: scores);
@@ -124,28 +125,28 @@ class _InputScores extends StatefulWidget {
 
 class _InputScoresState extends State<_InputScores> {
   late final TextEditingController controller;
-  late Timer _debounce;
+  // late Timer _debounce;
   @override
   void initState() {
     super.initState();
     controller = TextEditingController(
       text: widget.value.toString(),
     );
-    _debounce = Timer(Duration.zero, () {});
+    // _debounce = Timer(Duration.zero, () {});
   }
 
-  void _onChangeText(int score) {
-    if (_debounce.isActive) {
-      _debounce.cancel();
-    }
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      widget.valueChanged(score);
-    });
-  }
+  // void _onChangeText(int score) {
+  //   if (_debounce.isActive) {
+  //     _debounce.cancel();
+  //   }
+  //   _debounce = Timer(const Duration(milliseconds: 500), () {
+  //     widget.valueChanged(score);
+  //   });
+  // }
 
   @override
   void dispose() {
-    _debounce.cancel();
+    // _debounce.cancel();
     super.dispose();
   }
 
@@ -155,18 +156,18 @@ class _InputScoresState extends State<_InputScores> {
       controller: controller,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Không được để trống điểm người chơi';
+          return 'not_empty'.tr();
         }
         return null;
       },
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
-        label: RequiredLabel('Điểm người chơi ${widget.name}'),
+        label: RequiredLabel(widget.name),
       ),
       onChanged: (value) {
         try {
           final score = int.parse(value);
-          _onChangeText(score);
+          widget.valueChanged(score);
         } catch (e) {
           debugPrint(e.toString());
         }

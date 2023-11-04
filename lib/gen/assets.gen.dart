@@ -46,6 +46,19 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [logoApp, logoAppDark];
 }
 
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/en-US.json
+  String get enUS => 'assets/translations/en-US.json';
+
+  /// File path: assets/translations/vi-VN.json
+  String get viVN => 'assets/translations/vi-VN.json';
+
+  /// List of all assets
+  List<String> get values => [enUS, viVN];
+}
+
 class $AssetsDatabaseMigrationGen {
   const $AssetsDatabaseMigrationGen();
 
@@ -62,6 +75,7 @@ class Assets {
   static const $AssetsDatabaseGen database = $AssetsDatabaseGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {
