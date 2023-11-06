@@ -34,6 +34,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/app_laucher.png
+  AssetGenImage get appLaucher =>
+      const AssetGenImage('assets/images/app_laucher.png');
+
   /// File path: assets/images/logo_app.png
   AssetGenImage get logoApp =>
       const AssetGenImage('assets/images/logo_app.png');
@@ -43,7 +47,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/logo_app_dark.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [logoApp, logoAppDark];
+  List<AssetGenImage> get values => [appLaucher, logoApp, logoAppDark];
 }
 
 class $AssetsTranslationsGen {
