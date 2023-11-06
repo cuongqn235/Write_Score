@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:write_score/design/component/button/solid_button.dart';
+import 'package:write_score/design/component/button/text_button.dart';
 import 'package:write_score/design/component/text/required_label.dart';
 import 'package:write_score/design/spaces.dart';
 import 'package:write_score/feature/home/feature/game/presentation/widget/users_info_dialog/cubit/users_info_cubit.dart';
@@ -27,100 +28,79 @@ class UsersInfo extends StatefulWidget {
 class _UsersInfoState extends State<UsersInfo> {
   final _formKey = GlobalKey<FormState>();
   late final UsersInfoCubit cubit;
-  late ScrollController _scrollController;
   @override
   void initState() {
     super.initState();
     cubit = UsersInfoCubit();
-    _scrollController = ScrollController();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => cubit,
-      child: BlocListener<UsersInfoCubit, UsersInfoState>(
-        listenWhen: (previous, current) =>
-            previous.users.length != current.users.length,
-        listener: (context, state) {
-          _scrollController.animateTo(
-            _scrollController.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.fastOutSlowIn,
-          );
-        },
-        child: AlertDialog(
-          elevation: 0,
-          title: const Text('players').tr(),
-          content: Form(
-            key: _formKey,
-            child: SizedBox(
-              width: 1.sw,
-              height: 1.sh / 2,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    child: BlocSelector<UsersInfoCubit, UsersInfoState,
-                        List<String>>(
-                      selector: (state) {
-                        return state.users;
-                      },
-                      builder: (context, users) {
-                        return ListView.separated(
-                          controller: _scrollController,
-                          separatorBuilder: (context, index) => spaceH16,
-                          padding: EdgeInsets.only(
-                            top: 16.h,
-                          ),
-                          itemBuilder: (context, index) {
-                            if (index < users.length) {
-                              return _InputName(
-                                valueChanged: (value) {
-                                  cubit.onUpdateUserName(index, value);
-                                },
-                                value: users[index],
-                                player: index,
-                                onDeleteUser: (player) =>
-                                    cubit.onDeleteUser(player),
-                              );
-                            }
-                            return IconButton(
-                              onPressed: () => cubit.onAddUser(),
-                              icon: const Icon(
-                                Icons.add_circle_outline_outlined,
-                              ),
-                            );
-                          },
-                          itemCount: users.length + 1,
-                        );
-                      },
-                    ),
-                  ),
-                  spaceH16,
-                  BlocSelector<UsersInfoCubit, UsersInfoState, List<String>>(
+      child: AlertDialog(
+        elevation: 0,
+        title: const Text('players').tr(),
+        content: Form(
+          key: _formKey,
+          child: SizedBox(
+            width: 1.sw,
+            height: 1.sh / 2,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: BlocSelector<UsersInfoCubit, UsersInfoState,
+                      List<String>>(
                     selector: (state) {
                       return state.users;
                     },
                     builder: (context, users) {
-                      return AppSolidButton.medium(
-                        'done',
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.back(result: users);
+                      return ListView.separated(
+                        key: ValueKey(users.length),
+                        separatorBuilder: (context, index) => spaceH16,
+                        padding: EdgeInsets.only(
+                          top: 16.h,
+                        ),
+                        itemBuilder: (context, index) {
+                          if (index < users.length) {
+                            return _InputName(
+                              valueChanged: (value) {
+                                cubit.onUpdateUserName(index, value);
+                              },
+                              value: users[index],
+                              player: index,
+                              onDeleteUser: (player) =>
+                                  cubit.onDeleteUser(player),
+                            );
                           }
+                          return AppTextButton.small(
+                            'add_player',
+                            onPressed: () => cubit.onAddUser(),
+                          );
                         },
+                        itemCount: users.length + 1,
                       );
                     },
-                  )
-                ],
-              ),
+                  ),
+                ),
+                spaceH16,
+                BlocSelector<UsersInfoCubit, UsersInfoState, List<String>>(
+                  selector: (state) {
+                    return state.users;
+                  },
+                  builder: (context, users) {
+                    return AppSolidButton.medium(
+                      'done',
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          context.back(result: users);
+                        }
+                      },
+                    );
+                  },
+                )
+              ],
             ),
           ),
         ),
