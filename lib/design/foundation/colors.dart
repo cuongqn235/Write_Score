@@ -4,13 +4,13 @@ const Color colorWhite = Color(0xFFFFFFFF);
 const Color colorBlack = Color(0xFF000000);
 
 // PRIMARY
-const Color colorPrimary01 = Color(0xFFFFEEDA);
-const Color colorPrimary02 = Color(0xFFDDA031);
-const Color colorPrimary03 = Color(0xFFA68655);
+const Color colorPrimary01 = Color(0xff088963);
+const Color colorPrimary02 = Color(0xff088964);
+const Color colorPrimary03 = Color(0xff088965);
 const Color colorPrimary03Alpha50 = Color(0x80A68655);
 const Color colorPrimary03Alpha10 = Color(0x1AA68655);
-const Color colorPrimary04 = Color(0xFF7F5600);
-const Color colorPrimary05 = Color(0xFF604100);
+const Color colorPrimary04 = Color(0xff088966);
+const Color colorPrimary05 = Color(0xff088967);
 const Color colorPrimaryLogin = Color(0xFF0F4C81);
 
 // SECONDARY
