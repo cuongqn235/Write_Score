@@ -45,3 +45,4 @@ android/app/release/
 
 lib/gen/**.gen.dart
 lib/inject_dependency/inject_dependency.config.dart
+android/.gradle/**
