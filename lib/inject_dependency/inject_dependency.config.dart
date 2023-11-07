@@ -48,24 +48,16 @@ Future<_i1.GetIt> init(
     preResolve: true,
   );
   gh.factory<_i4.Dio>(
+    () => networkModule.dioSetting,
+    instanceName: 'settingDio',
+  );
+  gh.factory<_i4.Dio>(
     () => networkModule.dioGoogleMap,
     instanceName: 'googleMapDio',
   );
   gh.factory<_i4.Dio>(
-    () => networkModule.dioDownloadImage,
-    instanceName: 'downloadImageDio',
-  );
-  gh.factory<_i4.Dio>(
     () => networkModule.dioNotification,
     instanceName: 'dioNotification',
-  );
-  gh.factory<_i4.Dio>(
-    () => networkModule.dioAuth,
-    instanceName: 'authDio',
-  );
-  gh.factory<_i4.Dio>(
-    () => networkModule.dioSetting,
-    instanceName: 'settingDio',
   );
   gh.factory<_i4.Dio>(
     () => networkModule.dioDefault,
@@ -75,18 +67,22 @@ Future<_i1.GetIt> init(
     () => networkModule.dioToken,
     instanceName: 'tokenDio',
   );
+  gh.factory<_i4.Dio>(
+    () => networkModule.dioAuth,
+    instanceName: 'authDio',
+  );
+  gh.factory<_i4.Dio>(
+    () => networkModule.dioDownloadImage,
+    instanceName: 'downloadImageDio',
+  );
   gh.singleton<_i5.GameDao>(_i5.GameDao(sqlite: gh<_i3.Database>()));
   gh.lazySingleton<_i6.IApiService>(
     () => _i6.AuthApiService(gh<_i4.Dio>(instanceName: 'authDio')),
     instanceName: 'AuthApiService',
   );
   gh.lazySingleton<_i6.IApiService>(
-    () => _i6.TokenApiService(gh<_i4.Dio>(instanceName: 'tokenDio')),
-    instanceName: 'TokenApiService',
-  );
-  gh.lazySingleton<_i6.IApiService>(
-    () => _i6.DefaultApiService(gh<_i4.Dio>(instanceName: 'defaultDio')),
-    instanceName: 'DefaultApiService',
+    () => _i6.GoogleMapApiService(gh<_i4.Dio>(instanceName: 'googleMapDio')),
+    instanceName: 'GoogleMapApiService',
   );
   gh.lazySingleton<_i6.IApiService>(
     () => _i6.NotificationApiService(
@@ -94,12 +90,16 @@ Future<_i1.GetIt> init(
     instanceName: 'NotificationApiService',
   );
   gh.lazySingleton<_i6.IApiService>(
-    () => _i6.GoogleMapApiService(gh<_i4.Dio>(instanceName: 'googleMapDio')),
-    instanceName: 'GoogleMapApiService',
+    () => _i6.DefaultApiService(gh<_i4.Dio>(instanceName: 'defaultDio')),
+    instanceName: 'DefaultApiService',
   );
   gh.lazySingleton<_i6.IApiService>(
     () => _i6.SettingApiService(gh<_i4.Dio>(instanceName: 'settingDio')),
     instanceName: 'SettingApiService',
+  );
+  gh.lazySingleton<_i6.IApiService>(
+    () => _i6.TokenApiService(gh<_i4.Dio>(instanceName: 'tokenDio')),
+    instanceName: 'TokenApiService',
   );
   gh.factory<_i7.InitialCubit>(() => _i7.InitialCubit());
   gh.singleton<_i8.PlayerDao>(_i8.PlayerDao(sqlite: gh<_i3.Database>()));
@@ -114,16 +114,16 @@ Future<_i1.GetIt> init(
     instanceName: 'webSocketUrl',
   );
   gh.factory<String>(
+    () => networkModule.googleMapUrl,
+    instanceName: 'googleMapUrl',
+  );
+  gh.factory<String>(
     () => networkModule.notificationUrl,
     instanceName: 'notificationUrl',
   );
   gh.factory<String>(
     () => networkModule.baseUrl,
     instanceName: 'baseUrl',
-  );
-  gh.factory<String>(
-    () => networkModule.googleMapUrl,
-    instanceName: 'googleMapUrl',
   );
   gh.lazySingleton<_i12.IAppLocalDatasource>(
       () => _i13.AppLocalDatasource(gh<_i11.SharedPreferences>()));
