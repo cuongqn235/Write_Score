@@ -1,5 +1,6 @@
 // ignore_for_file: unused_element
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:write_score/design/foundation/colors.dart';
 import 'package:write_score/design/foundation/fonts.dart';
 import 'package:write_score/design/spaces.dart';
@@ -155,7 +156,7 @@ class AppSolidButton extends StatelessWidget {
   static Widget _defaultLabel(String text, TextStyle textStyle) => Text(
         text,
         style: textStyle,
-      );
+      ).tr();
 
   static Widget _defaultContent(
     String text, {

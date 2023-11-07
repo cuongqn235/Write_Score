@@ -23,16 +23,17 @@
             "command": "flutter",
             "args": [
                 "build",
-                "apk",
-                "--flavor",
-                "prod",
+                "appbundle",
+                "--verbose",
                 "--release",
                 "-t",
                 "lib/main_prod.dart",
+                "--flavor",
+                "prod",
             ],
             "group": "build",
             "problemMatcher": [],
-            "label": "flutter: flutter build apk prod",
+            "label": "flutter: flutter build appbundle prod",
             "detail": ""
         },
         {

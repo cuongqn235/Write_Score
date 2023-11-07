@@ -1,9 +1,23 @@
 part of 'home_bloc.dart';
 
-@freezed
-class HomeState extends BaseState with _$HomeState {
-  const factory HomeState({
-    @Default(Status.idle()) Status status,
-    @Default(<AppGame>[]) List<AppGame> games,
-  }) = _HomeState;
+class HomeState extends Equatable implements BaseState {
+  const HomeState({
+    this.status = const Status.idle(),
+    this.games = const <AppGame>[],
+  });
+  @override
+  final Status status;
+  final List<AppGame> games;
+  HomeState copyWith({
+    Status? status,
+    List<AppGame>? games,
+  }) {
+    return HomeState(
+      status: status ?? this.status,
+      games: games ?? this.games,
+    );
+  }
+
+  @override
+  List<Object?> get props => [games, status];
 }

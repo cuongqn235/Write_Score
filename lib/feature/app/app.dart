@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:write_score/design/theme/theme.dart';
 import 'package:write_score/feature/app/application/initial/initial_cubit.dart';
 import 'package:write_score/feature/common/router/go_router_refresh_stream.dart';
@@ -55,18 +56,18 @@ class _AppView extends StatefulWidget {
 
 class __AppViewState extends State<_AppView> {
   late final AppBloc appBloc;
-  final FlutterLocalization localization = FlutterLocalization.instance;
+
   late final StreamController redirectController;
   late final Completer processIntital;
   @override
   void initState() {
     super.initState();
-    localization.init(mapLocales: [
-      const MapLocale(
-        'vi',
-        {'title': "Vietnamese"},
-      )
-    ], initLanguageCode: 'vi');
+    // localization.init(mapLocales: [
+    //   const MapLocale(
+    //     'vi',
+    //     {'title': "Vietnamese"},
+    //   )
+    // ], initLanguageCode: 'vi');
     appBloc = context.read<AppBloc>();
     processIntital = Completer();
     redirectController = StreamController.broadcast();
@@ -153,15 +154,9 @@ class __AppViewState extends State<_AppView> {
                 theme: AppTheme.lightTheme(context),
                 darkTheme: AppTheme.darkTheme(context),
                 // scrollBehavior: const DefaultScrollBehavior(),
-                localizationsDelegates: [
-                  DefaultMaterialLocalizations.delegate,
-                  DefaultWidgetsLocalizations.delegate,
-                  DefaultCupertinoLocalizations.delegate,
-                  ...localization.localizationsDelegates,
-                ],
-                supportedLocales: [
-                  ...localization.supportedLocales,
-                ],
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
                 routeInformationParser: appRoute.routeInformationParser,
                 routerDelegate: appRoute.routerDelegate,
                 routeInformationProvider: appRoute.routeInformationProvider,

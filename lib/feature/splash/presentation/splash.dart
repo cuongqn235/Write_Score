@@ -78,12 +78,21 @@ class __IconAnimationState extends State<_IconAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      scale: aniamtion,
-      child: Assets.images.logoApp.image(
+    var logo = Assets.images.logoApp.image(
+      width: widget.iconSize,
+      height: widget.iconSize,
+    );
+    final brightness = MediaQuery.of(context).platformBrightness;
+    if (brightness == Brightness.dark) {
+      logo = Assets.images.logoAppDark.image(
         width: widget.iconSize,
         height: widget.iconSize,
-      ),
+      );
+    }
+
+    return ScaleTransition(
+      scale: aniamtion,
+      child: logo,
     );
   }
 }

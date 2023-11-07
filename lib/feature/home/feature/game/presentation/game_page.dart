@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:write_score/core/application/repository/game/models/app_game.dart';
 import 'package:write_score/design/spaces.dart';
 import 'package:write_score/feature/home/feature/game/application/game_bloc.dart';
@@ -50,7 +51,8 @@ class _GamePageState extends State<GamePage> {
   Widget build(BuildContext context) {
     return BlocListener<GameBloc, GameState>(
       listenWhen: (previous, current) =>
-          previous.game == null && previous.game != current.game,
+          (previous.game == null && previous.game != current.game) ||
+          previous.round != current.round,
       listener: (context, state) {
         widget.params?.reload?.call();
       },
@@ -59,7 +61,7 @@ class _GamePageState extends State<GamePage> {
         extendBodyBehindAppBar: true,
         extendBody: true,
         appBar: AppBar(
-          title: const Text('Ghi điểm'),
+          title: const Text('title_score').tr(),
           centerTitle: true,
         ),
         floatingActionButton: BlocSelector<GameBloc, GameState, AppGame?>(
@@ -113,10 +115,12 @@ class _GamePageState extends State<GamePage> {
                                 return users
                                     .mapIndexed(
                                       (index, element) => DataColumn(
-                                        label: Text(
-                                          'Người chơi \n ${users[index]}',
+                                        label: const Text(
+                                          'player',
                                           textAlign: TextAlign.center,
-                                        ),
+                                        ).tr(namedArgs: {
+                                          'name': '\n${users[index]}'
+                                        }),
                                       ),
                                     )
                                     .toList();

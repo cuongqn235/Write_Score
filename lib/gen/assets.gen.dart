@@ -34,15 +34,33 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/logo.png
-  AssetGenImage get logo => const AssetGenImage('assets/images/logo.png');
+  /// File path: assets/images/app_laucher.png
+  AssetGenImage get appLaucher =>
+      const AssetGenImage('assets/images/app_laucher.png');
 
   /// File path: assets/images/logo_app.png
   AssetGenImage get logoApp =>
       const AssetGenImage('assets/images/logo_app.png');
 
+  /// File path: assets/images/logo_app_dark.png
+  AssetGenImage get logoAppDark =>
+      const AssetGenImage('assets/images/logo_app_dark.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [logo, logoApp];
+  List<AssetGenImage> get values => [appLaucher, logoApp, logoAppDark];
+}
+
+class $AssetsTranslationsGen {
+  const $AssetsTranslationsGen();
+
+  /// File path: assets/translations/en-US.json
+  String get enUS => 'assets/translations/en-US.json';
+
+  /// File path: assets/translations/vi-VN.json
+  String get viVN => 'assets/translations/vi-VN.json';
+
+  /// List of all assets
+  List<String> get values => [enUS, viVN];
 }
 
 class $AssetsDatabaseMigrationGen {
@@ -61,6 +79,7 @@ class Assets {
   static const $AssetsDatabaseGen database = $AssetsDatabaseGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

@@ -12,4 +12,7 @@ abstract class IGameRepository {
     required int roundCount,
     required List<int> scores,
   });
+  Future<void> deleteGame({
+    required int gameId,
+  });
 }

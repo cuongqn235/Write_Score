@@ -10,7 +10,7 @@ class ErrorResponse {
     required this.path,
     required this.timestamp,
     required this.error,
-    @JsonKey(name: 'optionalData') this.optionalData,
+    this.optionalData,
   });
   final int? errorCode;
   final String? message;
