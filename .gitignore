@@ -43,6 +43,15 @@ android/app/debug/
 android/app/profile/
 android/app/release/
 
+
+macos/
+linux/
+windows/
+
 lib/gen/**.gen.dart
 lib/inject_dependency/inject_dependency.config.dart
 android/.gradle/**
+*.g.dart 
+*.freezed.dart
+android/.gradle/7.5/
+android/.gradle/buildOutputCleanup/
